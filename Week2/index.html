@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello World</title>
+	<meta charset="utf-8" />
+
+	<!-- style sheets -->
+	<link rel="stylesheet" href="css/style.css">
+
+    <!-- Different libraries -->
+    
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</head>
+<!-- This is how to write comments in html -->
+<body>
+
+	<div class="header">
+		A beautiful journey
+	</div>
+	<div class="sidebar">
+		<h1> A map </h1>
+        <p>
+            This map shows a beautiful journey
+        </p>
+
+    
+    </div>
+	<div class="content">
+		<div id="map"></div>
+	</div>
+
+    <script>
+        var map = L.map('map').setView([34.0697,-118.4432], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let travels = [
+            {
+                destination: 'Svalbard',
+                lat: 78.2229,
+                lon:15.6522,
+                description: 'Bachelor exchange'
+            },
+            {
+                destination: 'Stockholm',
+                lat:59.316,
+                lon:18.074,
+                description: 'Honeymoon'
+            },
+            {
+                destination: 'Interlaken',
+                lat:44.6927,
+                lon:7.8719,
+                description: 'Engagement'
+            },
+            {
+                destination: 'Rotterdam Centraal',
+                lat:51.923,
+                lon:4.470,
+                description: 'First date'
+            },
+            {
+                destination: 'Skjoldsvej',
+                lat:56.037,
+                lon:12.5919,
+                description: 'First house'
+            },
+        ]
+
+        travels.forEach(function(element){
+            L.marker([element.lat,element.lon]).addTo(map)
+                .bindPopup(element.destination+'<br>'+element.description)
+                .openPopup();
+        });
+
+        // var marker = L.marker([34.0697,-118.4432]).addTo(map)
+        //         .bindPopup('The Technology Sandbox<br> Where Yoh is sitting this very moment')
+        //         .openPopup();	
+
+        // var marker = L.marker([35.0697,-119.4432]).addTo(map)
+        //         .bindPopup('Somewhere')
+        //         .openPopup();	
+    </script>
+
+</body>
+</html>
